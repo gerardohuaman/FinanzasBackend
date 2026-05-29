@@ -12,27 +12,23 @@ public class Usuario {
     private int id_usuario;
 
     @Column(name = "username", nullable = false, length = 50)
-    private String username;
+    private String username; //Por lo general toman el correo corporativo del asesor
 
     @Column(name = "password", nullable = false, length = 30)
-    private String password;
+    private String password; // Se guardara encriptado con BCrypt
 
     @Column(name = "nombreCompleto", nullable = false, length = 150)
     private String nombreCompleto;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_rol"))
-    private List<Rol> roles;
+
 
     public Usuario() {}
 
-    public Usuario(int id_usuario, String username, String password, String nombreCompleto, List<Rol> roles) {
+    public Usuario(int id_usuario, String username, String password, String nombreCompleto) {
         this.id_usuario = id_usuario;
         this.username = username;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
-        this.roles = roles;
     }
 
     public int getId_usuario() {
@@ -65,13 +61,5 @@ public class Usuario {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
-    }
-
-    public List<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
     }
 }
