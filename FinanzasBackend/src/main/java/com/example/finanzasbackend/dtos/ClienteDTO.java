@@ -1,42 +1,17 @@
-package com.example.finanzasbackend.entities;
+package com.example.finanzasbackend.dtos;
 
-import jakarta.persistence.*;
+import com.example.finanzasbackend.entities.Usuario;
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-@Entity
-@Table(name = "cliente")
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClienteDTO {
     private int id_cliente;
-
-    @Column(name = "dni", nullable = false, length = 8)
     private String dni;
-
-    @Column(name = "nombres", nullable = false, length = 100)
     private String nombres;
-
-    @Column(name = "apellidos", nullable = false, length = 100)
     private String apellidos;
-
-    @Column(name = "email", nullable = false, length = 50)
     private String email;
-
-    @Column(name = "ingresos_mensuales", nullable = false)
     private double ingresos_mensuales;
-
-
-
-    public Cliente() {}
-
-    public Cliente(int id_cliente, String dni, String nombres, String apellidos, String email, double ingresos_mensuales) {
-        this.id_cliente = id_cliente;
-        this.dni = dni;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.email = email;
-        this.ingresos_mensuales = ingresos_mensuales;
-
-    }
 
     public int getId_cliente() {
         return id_cliente;
