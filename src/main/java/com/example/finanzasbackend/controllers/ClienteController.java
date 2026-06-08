@@ -19,14 +19,14 @@ public class ClienteController {
     private IClienteService service;
 
     @PostMapping("/registrar")
-    public void insertar(@RequestBody ClienteDTO dto){
+    public void create(@RequestBody ClienteDTO dto){
         ModelMapper m = new ModelMapper();
         Cliente cliente = m.map(dto, Cliente.class);
-        service.insertar(cliente);
+        service.insert(cliente);
     }
 
     @GetMapping
-    public List<ClienteDTO> listar(){
+    public List<ClienteDTO> list(){
         return service.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, ClienteDTO.class);
@@ -34,7 +34,7 @@ public class ClienteController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modificar(@RequestBody ClienteDTO c){
+    public ResponseEntity<?> update(@RequestBody ClienteDTO c){
         Cliente existente = service.listId(c.getId_cliente());
         if(existente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

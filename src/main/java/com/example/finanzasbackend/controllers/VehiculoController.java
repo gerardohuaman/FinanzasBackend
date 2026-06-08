@@ -19,14 +19,14 @@ public class VehiculoController {
     private IVehiculoService service;
 
     @PostMapping("/registrarVehiculo")
-    public void insertar(@RequestBody VehiculoDTO dto){
+    public void create(@RequestBody VehiculoDTO dto){
         ModelMapper m = new ModelMapper();
         Vehiculo vehiculo = m.map(dto, Vehiculo.class);
-        service.insertar(vehiculo);
+        service.insert(vehiculo);
     }
 
     @GetMapping
-    public List<VehiculoDTO> listar(){
+    public List<VehiculoDTO> list(){
         return service.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, VehiculoDTO.class);
@@ -34,7 +34,7 @@ public class VehiculoController {
     }
 
     @PutMapping
-    public ResponseEntity<?> modificar(@RequestBody VehiculoDTO v){
+    public ResponseEntity<?> update(@RequestBody VehiculoDTO v){
         Vehiculo existente = service.listId(v.getId_vehiculo());
         if(existente == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND)

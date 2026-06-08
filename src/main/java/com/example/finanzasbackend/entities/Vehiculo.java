@@ -18,17 +18,18 @@ public class Vehiculo {
     @Column(name = "precio_venta", nullable = false, length = 50)
     private double precio_venta;
 
-    @Column(name = "moneda_origen", nullable = false, length = 50)
-    private String moneda_origen;
+    @ManyToOne
+    @JoinColumn(name = "id_moneda")
+    private Moneda moneda;
 
     public Vehiculo(){}
 
-    public Vehiculo(int id_vehiculo, String marca, String modelo, double precio_venta, String moneda_origen) {
+    public Vehiculo(int id_vehiculo, String marca, String modelo, double precio_venta, Moneda moneda) {
         this.id_vehiculo = id_vehiculo;
         this.marca = marca;
         this.modelo = modelo;
         this.precio_venta = precio_venta;
-        this.moneda_origen = moneda_origen;
+        this.moneda = moneda;
     }
 
     public int getId_vehiculo() {
@@ -63,11 +64,11 @@ public class Vehiculo {
         this.precio_venta = precio_venta;
     }
 
-    public String getMoneda_origen() {
-        return moneda_origen;
+    public Moneda getMoneda() {
+        return moneda;
     }
 
-    public void setMoneda_origen(String moneda_origen) {
-        this.moneda_origen = moneda_origen;
+    public void setMoneda(Moneda moneda) {
+        this.moneda = moneda;
     }
 }

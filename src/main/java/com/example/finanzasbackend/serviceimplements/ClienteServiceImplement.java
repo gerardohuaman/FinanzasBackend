@@ -15,7 +15,7 @@ public class ClienteServiceImplement  implements IClienteService {
 
 
     @Override
-    public void insertar(Cliente cliente) {
+    public void insert(Cliente cliente) {
         repository.save(cliente);
     }
 

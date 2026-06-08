@@ -15,7 +15,7 @@ public class VehiculoServiceImplement implements IVehiculoService {
 
 
     @Override
-    public void insertar(Vehiculo vehiculo) {
+    public void insert(Vehiculo vehiculo) {
         repository.save(vehiculo);
     }
 
