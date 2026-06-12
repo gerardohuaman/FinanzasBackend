@@ -1,5 +1,6 @@
 package com.example.finanzasbackend.util;
 import com.example.finanzasbackend.CalculadoraFinanciera;
+import com.example.finanzasbackend.dtos.CronogramaPagosDTO;
 import com.example.finanzasbackend.dtos.SimulacionInputDTO;
 import com.example.finanzasbackend.dtos.SimulacionResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,9 @@ public class CalculadoraFinancieraTest {
 
         //2. Ejecutamos el motor del calculo
         SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculo, input);
+
+        //PARA VISUALIZAR
+        visualizarCronogramaEnConsola("Prueba sin Gracia", response);
 
         //3. Verifacion de los resultados macroeconomicos
         assertNotNull(response, "La respuesta no deberia ser nula");
@@ -142,5 +146,30 @@ public class CalculadoraFinancieraTest {
         assertNotNull(response);
         // Verifica la extinción exacta procesando la tasa nominal compleja
         assertEquals(0.0, response.getCronograma().get(11).getSaldo_final(), 0.05);
+    }
+
+    private void visualizarCronogramaEnConsola(String nombreTest, SimulacionResponseDTO response){
+        System.out.println("\n=====================================================================================================================================================");
+        System.out.println("REPORTE DE SIMULACION: " + nombreTest);
+        System.out.println("Monto Financiado: " + response.getMonto_financiado() + " | Cuota Balon: " + response.getCuota_balon());
+        System.out.println("TCEA: " + (response.getTcea() * 100) + "% | TIR: " + (response.getTir() * 100) + "% | VAN: " + response.getVan());
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-5s | %-12s | %-12s | %-12s | %-12s | %-14s | %-14s | %-12s | %-12s\n",
+                "Mes", "Fecha", "S. Inicial", "Interes", "Amortizacion", "S. Desgravamen", "S. Vehicular", "Cuota Total", "S. Final");
+        System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        for (CronogramaPagosDTO cuota : response.getCronograma()){
+            System.out.printf("%-5d | %-12s | %-12.2f | %-12.2f | %-12.2f | %-14.2f | %-14.2f | %-12.2f | %-12.2f\n",
+                    cuota.getNumero_mes(),
+                    cuota.getFecha_pago().toString(),
+                    cuota.getSaldo_inicial(),
+                    cuota.getInteres(),
+                    cuota.getAmortizacion(),
+                    cuota.getSeguro_desgravamen(),
+                    cuota.getSeguro_vehicular(),
+                    cuota.getCuota_total(),
+                    cuota.getSaldo_final());
+        }
+        System.out.println("=====================================================================================================================================================\n");
     }
 }
