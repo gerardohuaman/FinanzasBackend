@@ -15,11 +15,10 @@ public class CalculadoraFinanciera {
         double montoFinanciado = precioVehiculoConvertido - cuotaInicial;
 
         double tem = convertirATEM(input.getTipo_tasa(), input.getValor_tasa(), input.getCapitalizacion());
-        double cokMensual = Math.pow(1 + (input.getCok() / 100.0), 30.0 / 360.0) - 1;
+        double cokMensual = input.getCok()/100;
 
         double tasaDesgravamenMensual = input.getTasa_desgravamen() / 100.0;
         double temAjustada = tem + tasaDesgravamenMensual; // Factor ajustado para el Método Francés
-
         double seguroVehicularMensual = precioVehiculoConvertido * (input.getTasa_vehicular() / 100.0);
 
         List<CronogramaPagosDTO> cronograma = new ArrayList<>();
@@ -81,7 +80,6 @@ public class CalculadoraFinanciera {
 
             sumaIntereses += interesMes;
             sumaSeguros += (sDesgravamenMes + seguroVehicularMensual);
-
             CronogramaPagosDTO cuotaDTO = new CronogramaPagosDTO();
             cuotaDTO.setNumero_mes(i);
             cuotaDTO.setFecha_pago(fechaVencimiento);

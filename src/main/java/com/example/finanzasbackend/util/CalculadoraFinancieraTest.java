@@ -32,16 +32,16 @@ public class CalculadoraFinancieraTest {
         SimulacionInputDTO input = new SimulacionInputDTO();
         input.setPorcentaje_inicial(20.0);
         input.setPorcentaje_balon(40.0);
-        input.setPlazo_meses(24);
+        input.setPlazo_meses(48);
         input.setTipo_tasa("TEA");
-        input.setValor_tasa(15.0);
+        input.setValor_tasa(12.5);
         input.setMeses_gracia(0);
         input.setTipo_gracia("SIN_GRACIA");
-        input.setTasa_desgravamen(0.05);
-        input.setTasa_vehicular(3.0);
-        input.setCok(10.0);
+        input.setTasa_desgravamen(0.03);
+        input.setTasa_vehicular(0.03);
+        input.setCok(1);
 
-        double precioVehiculo = 20000.0;
+        double precioVehiculo = 200000.0;
 
         //2. Ejecutamos el motor del calculo
         SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculo, input);
@@ -51,15 +51,15 @@ public class CalculadoraFinancieraTest {
 
         //3. Verifacion de los resultados macroeconomicos
         assertNotNull(response, "La respuesta no deberia ser nula");
-        assertEquals(16000.0, response.getMonto_financiado(), "El monto a financiar debe ser Precio - Cuota Inicial");
-        assertEquals(8000.0, response.getCuota_balon(), "La cuota balon debe ser el 40% de 20,000");
+        assertEquals(160000.0, response.getMonto_financiado(), "El monto a financiar debe ser Precio - Cuota Inicial");
+        assertEquals(80000.0, response.getCuota_balon(), "La cuota balon debe ser el 40% de 20,000");
 
         //4. Verificamos el tamaño del cronograma
-        assertEquals(24, response.getCronograma().size(), "El cronograma debe tener exactamente 24 cuotas generadas");
+        assertEquals(48, response.getCronograma().size(), "El cronograma debe tener exactamente 48 cuotas generadas");
 
         //5. Verificamos la extincion de la deuda (Regla de oro contable)
-        double saldoFinalUltimaCuota = response.getCronograma().get(23).getSaldo_final();
-        assertEquals(0.0, saldoFinalUltimaCuota, 0.05, "El saldo final en el mes 24 debe ser cero (la deuda se extinguio)");
+        double saldoFinalUltimaCuota = response.getCronograma().get(47).getSaldo_final();
+        assertEquals(0.0, saldoFinalUltimaCuota, 0.05, "El saldo final en el mes 48 debe ser cero (la deuda se extinguio)");
 
         //6. Verificamos que los indicadores de transparencia SBS se hayan procesado
         assertTrue(response.getTcea() > 0, "La TCEA debio calcularse y ser mayor a 0");
@@ -78,9 +78,9 @@ public class CalculadoraFinancieraTest {
         input.setValor_tasa(15.0);
         input.setMeses_gracia(2);
         input.setTipo_gracia("TOTAL");
-        input.setTasa_desgravamen(0.0);
-        input.setTasa_vehicular(0.0);
-        input.setCok(10.0);
+        input.setTasa_desgravamen(0.03);
+        input.setTasa_vehicular(0.03);
+        input.setCok(1);
 
         double precioVehiculo = 20000.0;
         SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculo, input);
@@ -137,8 +137,8 @@ public class CalculadoraFinancieraTest {
         input.setCapitalizacion("DIARIA"); // Conversión bajo año comercial de 360 días
         input.setMeses_gracia(0);
         input.setTipo_gracia("SIN_GRACIA");
-        input.setTasa_desgravamen(0.05);
-        input.setTasa_vehicular(3.0);
+        input.setTasa_desgravamen(0.03);
+        input.setTasa_vehicular(0.03);
         input.setCok(12.0);
 
         SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(15000.0, input);
@@ -152,7 +152,12 @@ public class CalculadoraFinancieraTest {
         System.out.println("\n=====================================================================================================================================================");
         System.out.println("REPORTE DE SIMULACION: " + nombreTest);
         System.out.println("Monto Financiado: " + response.getMonto_financiado() + " | Cuota Balon: " + response.getCuota_balon());
-        System.out.println("TCEA: " + (response.getTcea() * 100) + "% | TIR: " + (response.getTir() * 100) + "% | VAN: " + response.getVan());
+        System.out.println(String.format(
+                "TCEA: %.7f%% | TIR: %.7f%% | VAN: %.2f",
+                response.getTcea() * 100,
+                response.getTir() * 100,
+                response.getVan()
+        ));
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("%-5s | %-12s | %-12s | %-12s | %-12s | %-14s | %-14s | %-12s | %-12s\n",
                 "Mes", "Fecha", "S. Inicial", "Interes", "Amortizacion", "S. Desgravamen", "S. Vehicular", "Cuota Total", "S. Final");
@@ -196,8 +201,7 @@ public class CalculadoraFinancieraTest {
         input.setTasa_vehicular(0.03);   // 0.03% mensual
 
         // El COK en el Excel es 1% mensual (0.01).
-        // Para que la fórmula del motor lo pase exactamente a 1% mensual, enviamos su equivalente anual:
-        input.setCok(12.682503);
+        input.setCok(1);
 
         // 2. Ejecución.
         // El precio original es $25,000. El motor recibe el precio ya convertido a la moneda de evaluación (Soles).
