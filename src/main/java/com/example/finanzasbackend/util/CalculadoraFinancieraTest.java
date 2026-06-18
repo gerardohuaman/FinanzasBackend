@@ -172,4 +172,65 @@ public class CalculadoraFinancieraTest {
         }
         System.out.println("=====================================================================================================================================================\n");
     }
+
+
+    @Test
+    void testGenerarCronogramaCompraInteligente_Sheet2_GraciaParcial(){
+        // 1. Configuración de entrada basada en "EjemplosTF_Finanzas.xlsx - Sheet2"
+        SimulacionInputDTO input = new SimulacionInputDTO();
+        input.setPorcentaje_inicial(20.0);
+        input.setPorcentaje_balon(30.0);
+        input.setPlazo_meses(36);
+
+        // Uso de TNA del 10.5% con capitalización mensual
+        input.setTipo_tasa("TNA");
+        input.setValor_tasa(10.5);
+        input.setCapitalizacion("MENSUAL");
+
+        // 2 meses de Gracia Parcial
+        input.setMeses_gracia(2);
+        input.setTipo_gracia("PARCIAL");
+
+        // Seguros
+        input.setTasa_desgravamen(0.03); // 0.03% mensual
+        input.setTasa_vehicular(0.03);   // 0.03% mensual
+
+        // El COK en el Excel es 1% mensual (0.01).
+        // Para que la fórmula del motor lo pase exactamente a 1% mensual, enviamos su equivalente anual:
+        input.setCok(12.682503);
+
+        // 2. Ejecución.
+        // El precio original es $25,000. El motor recibe el precio ya convertido a la moneda de evaluación (Soles).
+        // $25,000 * 3.8 = S/ 95,000
+        double precioVehiculoConvertido = 95000.0;
+
+        SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculoConvertido, input);
+
+        // Visualización opcional en consola
+        visualizarCronogramaEnConsola("Prueba Sheet 2 (TNA y Gracia Parcial)", response);
+
+        // 3. Verificaciones de Datos Iniciales
+        assertNotNull(response, "La respuesta no deberia ser nula");
+        assertEquals(76000.0, response.getMonto_financiado(), 0.01, "El monto financiado debe ser 76,000");
+        assertEquals(28500.0, response.getCuota_balon(), 0.01, "La cuota balón debe ser 28,500");
+        assertEquals(36, response.getCronograma().size(), "El cronograma debe tener 36 cuotas");
+
+        // 4. Verificación de Gracia Parcial (Mes 1 y 2)
+        // En gracia parcial solo se paga Interés (665) + S.Desgravamen (22.8) + S.Vehicular (28.5) = 716.3
+        assertEquals(716.30, response.getCronograma().get(0).getCuota_total(), 0.05, "La cuota del mes 1 (gracia) debe ser 716.30");
+        assertEquals(0.0, response.getCronograma().get(0).getAmortizacion(), 0.01, "En gracia parcial la amortización es 0");
+        assertEquals(716.30, response.getCronograma().get(1).getCuota_total(), 0.05, "La cuota del mes 2 (gracia) debe ser 716.30");
+
+        // 5. Verificación de Cuota Regular (Inicia en Mes 3)
+        assertEquals(1915.69, response.getCronograma().get(2).getCuota_total(), 0.05, "La cuota regular debe ser 1915.69");
+
+        // 6. Verificación Cuota Final y Extinción de Deuda (Mes 36)
+        assertEquals(30415.69, response.getCronograma().get(35).getCuota_total(), 0.05, "La cuota final incluye la cuota regular + balón");
+        assertEquals(0.0, response.getCronograma().get(35).getSaldo_final(), 0.05, "La deuda debe extinguirse en la última cuota");
+
+        // 7. Verificación de Indicadores Financieros (Resultados)
+        assertEquals(-767.28, response.getVan(), 1.0, "El VAN debe coincidir");
+        assertEquals(0.009552, response.getTir(), 0.0001, "La TIR mensual debe ser 0.9552%");
+        assertEquals(0.12084, response.getTcea(), 0.0001, "La TCEA debe ser 12.084%");
+    }
 }
