@@ -28,7 +28,9 @@ public class CalculadoraFinanciera {
         double saldoDeudor = montoFinanciado;
         LocalDate fechaVencimiento = LocalDate.now();
         double sumaIntereses = 0;
-        double sumaSeguros = 0;
+        double sumaSeguroDesgravamen = 0;
+        double sumaSeguroVehicular = 0;
+        double sumaCuotasFinales =0;
 
         int mesesOrdinarios = input.getPlazo_meses() - input.getMeses_gracia();
         boolean cuotaCalculada = false;
@@ -79,7 +81,9 @@ public class CalculadoraFinanciera {
             flujoCaja[i] = cuotaTotalMes;
 
             sumaIntereses += interesMes;
-            sumaSeguros += (sDesgravamenMes + seguroVehicularMensual);
+            sumaSeguroDesgravamen += sDesgravamenMes;
+            sumaSeguroVehicular += seguroVehicularMensual;
+            sumaCuotasFinales += cuotaTotalMes;
             CronogramaPagosDTO cuotaDTO = new CronogramaPagosDTO();
             cuotaDTO.setNumero_mes(i);
             cuotaDTO.setFecha_pago(fechaVencimiento);
@@ -109,7 +113,9 @@ public class CalculadoraFinanciera {
         response.setTcea(Math.round(tcea * 10000000.0) / 10000000.0);
 
         response.setTotal_intereses(Math.round(sumaIntereses * 100.0) / 100.0);
-        response.setTotal_seguros(Math.round(sumaSeguros * 100.0) / 100.0);
+        response.setTotal_seguro_desgravamen(Math.round(sumaSeguroDesgravamen * 100.0) / 100.0);
+        response.setTotal_seguro_vehicular(Math.round(sumaSeguroVehicular * 100.0) / 100.0);
+        response.setTotal_cuota_final(Math.round(sumaCuotasFinales * 100.0) / 100.0);
         response.setCronograma(cronograma);
 
         return response;

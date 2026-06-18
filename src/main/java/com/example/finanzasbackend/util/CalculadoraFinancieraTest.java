@@ -27,47 +27,6 @@ public class CalculadoraFinancieraTest {
     }
 
     @Test
-    void testGenerarCronogramaCompraInteligente_SinGracia(){
-        //1. Preparamos el DTO simulando lo que enviaria el frontend
-        SimulacionInputDTO input = new SimulacionInputDTO();
-        input.setPorcentaje_inicial(20.0);
-        input.setPorcentaje_balon(40.0);
-        input.setPlazo_meses(48);
-        input.setTipo_tasa("TEA");
-        input.setValor_tasa(12.5);
-        input.setMeses_gracia(0);
-        input.setTipo_gracia("SIN_GRACIA");
-        input.setTasa_desgravamen(0.03);
-        input.setTasa_vehicular(0.03);
-        input.setCok(1);
-
-        double precioVehiculo = 200000.0;
-
-        //2. Ejecutamos el motor del calculo
-        SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculo, input);
-
-        //PARA VISUALIZAR
-        visualizarCronogramaEnConsola("Prueba sin Gracia", response);
-
-        //3. Verifacion de los resultados macroeconomicos
-        assertNotNull(response, "La respuesta no deberia ser nula");
-        assertEquals(160000.0, response.getMonto_financiado(), "El monto a financiar debe ser Precio - Cuota Inicial");
-        assertEquals(80000.0, response.getCuota_balon(), "La cuota balon debe ser el 40% de 20,000");
-
-        //4. Verificamos el tamaño del cronograma
-        assertEquals(48, response.getCronograma().size(), "El cronograma debe tener exactamente 48 cuotas generadas");
-
-        //5. Verificamos la extincion de la deuda (Regla de oro contable)
-        double saldoFinalUltimaCuota = response.getCronograma().get(47).getSaldo_final();
-        assertEquals(0.0, saldoFinalUltimaCuota, 0.05, "El saldo final en el mes 48 debe ser cero (la deuda se extinguio)");
-
-        //6. Verificamos que los indicadores de transparencia SBS se hayan procesado
-        assertTrue(response.getTcea() > 0, "La TCEA debio calcularse y ser mayor a 0");
-        assertTrue(response.getTir() > 0, "La TIR debio calcularse exitosamente");
-        assertNotEquals(0.0, response.getVan(), "El VAN debe tener un valor calculado");
-    }
-
-    @Test
     void testGenerarCronogramaCompraInteligente_conGraciatotal(){
         //Configuramos la misma simulacion, pero con 2 mese de gracia total
         SimulacionInputDTO input = new SimulacionInputDTO();
@@ -176,9 +135,52 @@ public class CalculadoraFinancieraTest {
                     cuota.getSaldo_final());
         }
         System.out.println("=====================================================================================================================================================\n");
+        System.out.println("Suma de intereses del cronograma: " + response.getTotal_intereses());
+        System.out.println("Suma de seguro desgravamen del cronograma: " + response.getTotal_seguro_desgravamen());
+        System.out.println("Suma de seguro vehicular del cronograma: " + response.getTotal_seguro_vehicular());
+        System.out.println("Suma de cuotas finales del cronograma: " + response.getTotal_cuota_final());
     }
 
+    @Test
+    void testGenerarCronogramaCompraInteligente_SinGracia(){
+        //1. Preparamos el DTO simulando lo que enviaria el frontend
+        SimulacionInputDTO input = new SimulacionInputDTO();
+        input.setPorcentaje_inicial(20.0);
+        input.setPorcentaje_balon(40.0);
+        input.setPlazo_meses(48);
+        input.setTipo_tasa("TEA");
+        input.setValor_tasa(12.5);
+        input.setMeses_gracia(0);
+        input.setTipo_gracia("SIN_GRACIA");
+        input.setTasa_desgravamen(0.03);
+        input.setTasa_vehicular(0.03);
+        input.setCok(1);
 
+        double precioVehiculo = 200000.0;
+
+        //2. Ejecutamos el motor del calculo
+        SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculo, input);
+
+        //PARA VISUALIZAR
+        visualizarCronogramaEnConsola("Prueba 1 sin Gracia", response);
+
+        //3. Verifacion de los resultados macroeconomicos
+        assertNotNull(response, "La respuesta no deberia ser nula");
+        assertEquals(160000.0, response.getMonto_financiado(), "El monto a financiar debe ser Precio - Cuota Inicial");
+        assertEquals(80000.0, response.getCuota_balon(), "La cuota balon debe ser el 40% de 20,000");
+
+        //4. Verificamos el tamaño del cronograma
+        assertEquals(48, response.getCronograma().size(), "El cronograma debe tener exactamente 48 cuotas generadas");
+
+        //5. Verificamos la extincion de la deuda (Regla de oro contable)
+        double saldoFinalUltimaCuota = response.getCronograma().get(47).getSaldo_final();
+        assertEquals(0.0, saldoFinalUltimaCuota, 0.05, "El saldo final en el mes 48 debe ser cero (la deuda se extinguio)");
+
+        //6. Verificamos que los indicadores de transparencia SBS se hayan procesado
+        assertTrue(response.getTcea() > 0, "La TCEA debio calcularse y ser mayor a 0");
+        assertTrue(response.getTir() > 0, "La TIR debio calcularse exitosamente");
+        assertNotEquals(0.0, response.getVan(), "El VAN debe tener un valor calculado");
+    }
     @Test
     void testGenerarCronogramaCompraInteligente_Sheet2_GraciaParcial(){
         // 1. Configuración de entrada basada en "EjemplosTF_Finanzas.xlsx - Sheet2"
@@ -211,7 +213,7 @@ public class CalculadoraFinancieraTest {
         SimulacionResponseDTO response = CalculadoraFinanciera.generarCronogramaCompraInteligente(precioVehiculoConvertido, input);
 
         // Visualización opcional en consola
-        visualizarCronogramaEnConsola("Prueba Sheet 2 (TNA y Gracia Parcial)", response);
+        visualizarCronogramaEnConsola("Prueba 2 (TNA y Gracia Parcial)", response);
 
         // 3. Verificaciones de Datos Iniciales
         assertNotNull(response, "La respuesta no deberia ser nula");

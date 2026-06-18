@@ -17,7 +17,9 @@ public class SimulacionResponseDTO {
 
     //Totales informativos
     private double total_intereses;
-    private double total_seguros;
+    private double total_seguro_desgravamen;
+    private double total_seguro_vehicular;
+    private double total_cuota_final;
 
     private List<CronogramaPagosDTO> cronograma;
 
@@ -101,12 +103,24 @@ public class SimulacionResponseDTO {
         this.total_intereses = total_intereses;
     }
 
-    public double getTotal_seguros() {
-        return total_seguros;
+    public double getTotal_seguro_desgravamen() {
+        return total_seguro_desgravamen;
     }
 
-    public void setTotal_seguros(double total_seguros) {
-        this.total_seguros = total_seguros;
+    public void setTotal_seguro_desgravamen(double total_seguro_desgravamen) {this.total_seguro_desgravamen = total_seguro_desgravamen;}
+
+    public double getTotal_seguro_vehicular() {
+        return total_seguro_vehicular;
+    }
+
+    public void setTotal_seguro_vehicular(double total_seguro_vehicular) {this.total_seguro_vehicular = total_seguro_vehicular;}
+
+    public double getTotal_cuota_final() {
+        return total_cuota_final;
+    }
+
+    public void setTotal_cuota_final(double total_cuota_final) {
+        this.total_cuota_final = total_cuota_final;
     }
 
     public List<CronogramaPagosDTO> getCronograma() {
