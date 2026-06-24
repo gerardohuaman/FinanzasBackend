@@ -20,7 +20,6 @@ public class CalculadoraFinanciera {
         double tasaDesgravamenMensual = input.getTasa_desgravamen() / 100.0;
         double temAjustada = tem + tasaDesgravamenMensual; // Factor ajustado para el Método Francés
         double seguroVehicularMensual = precioVehiculoConvertido * (input.getTasa_vehicular() / 100.0);
-
         List<CronogramaPagosDTO> cronograma = new ArrayList<>();
         double[] flujoCaja = new double[input.getPlazo_meses() + 1];
         flujoCaja[0] = montoFinanciado;
@@ -49,7 +48,7 @@ public class CalculadoraFinanciera {
             if(i <= input.getMeses_gracia()){
                 if("TOTAL".equalsIgnoreCase(input.getTipo_gracia())){
                     amortizacionMes = 0;
-                    cuotaTotalMes = 0;
+                    cuotaTotalMes = interesMes + sDesgravamenMes + seguroVehicularMensual;
                     saldoDeudor = saldoInicialMes + interesMes;
                 } else if("PARCIAL".equalsIgnoreCase(input.getTipo_gracia())){
                     amortizacionMes = 0;
@@ -123,7 +122,6 @@ public class CalculadoraFinanciera {
 
     public static double convertirATEM(String tipoTasa, double valorTasa, String capitalizacion){
         double tasaDecimal = valorTasa / 100.0;
-
         if(tipoTasa.toUpperCase().contains("NOMINAL") || tipoTasa.equalsIgnoreCase("TNA")){
             double m = 1;
             if(capitalizacion != null){
