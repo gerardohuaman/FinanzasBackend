@@ -14,7 +14,7 @@ public class Usuario {
     @Column(name = "username", nullable = false, length = 50, unique = true)
     private String username; //Por lo general toman el correo corporativo del asesor
 
-    @Column(name = "password", nullable = false, length = 30)
+    @Column(name = "password", nullable = false, length = 200)
     private String password; // Se guardara encriptado con BCrypt
 
     @Column(name = "nombreCompleto", nullable = false, length = 150)
