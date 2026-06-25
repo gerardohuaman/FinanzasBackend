@@ -12,8 +12,6 @@ import java.util.List;
 public class ClienteServiceImplement  implements IClienteService {
     @Autowired
     private IClienteRepository repository;
-
-
     @Override
     public void insert(Cliente cliente) {
         repository.save(cliente);
@@ -34,5 +32,8 @@ public class ClienteServiceImplement  implements IClienteService {
         return repository.findById(id).orElse(null);
     }
 
-
+    @Override
+    public Cliente findByNombres(String name) {
+        return repository.findByNombres(name);
+    }
 }

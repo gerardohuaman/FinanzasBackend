@@ -20,15 +20,21 @@ public class Usuario {
     @Column(name = "nombreCompleto", nullable = false, length = 150)
     private String nombreCompleto;
 
-
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "usuario_roles", joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_rol"))
+    private List<Rol> roles;
+    @Column(nullable = false)
+    private Boolean enabled;
     public Usuario() {}
 
-    public Usuario(int id_usuario, String username, String password, String nombreCompleto) {
+    public Usuario(int id_usuario, String username, String password, String nombreCompleto, List<Rol> roles, Boolean enabled) {
         this.id_usuario = id_usuario;
         this.username = username;
         this.password = password;
         this.nombreCompleto = nombreCompleto;
+        this.roles = roles;
+        this.enabled = enabled;
     }
 
     public int getId_usuario() {
@@ -61,5 +67,19 @@ public class Usuario {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
+    }
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

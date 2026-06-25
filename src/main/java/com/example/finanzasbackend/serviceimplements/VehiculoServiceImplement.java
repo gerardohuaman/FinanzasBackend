@@ -12,8 +12,6 @@ import java.util.List;
 public class VehiculoServiceImplement implements IVehiculoService {
     @Autowired
     private IVehiculoRepository repository;
-
-
     @Override
     public void insert(Vehiculo vehiculo) {
         repository.save(vehiculo);
@@ -32,5 +30,10 @@ public class VehiculoServiceImplement implements IVehiculoService {
     @Override
     public void update(Vehiculo vehiculo) {
         repository.save(vehiculo);
+    }
+
+    @Override
+    public Vehiculo findByMarca(String marca) {
+        return repository.findByMarca(marca);
     }
 }
