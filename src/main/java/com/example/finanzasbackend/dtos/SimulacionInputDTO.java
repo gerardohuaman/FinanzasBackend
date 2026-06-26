@@ -52,11 +52,11 @@ public class SimulacionInputDTO {
         this.id_vehiculo = id_vehiculo;
     }
 
-    public Integer getId_tipo_cambio() {
+    public int getId_tipo_cambio() {
         return id_tipo_cambio;
     }
 
-    public void setId_tipo_cambio(Integer id_tipo_cambio) {
+    public void setId_tipo_cambio(int id_tipo_cambio) {
         this.id_tipo_cambio = id_tipo_cambio;
     }
 
