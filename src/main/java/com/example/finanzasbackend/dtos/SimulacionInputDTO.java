@@ -5,7 +5,7 @@ public class SimulacionInputDTO {
     private int id_usuario;
     private int id_cliente;
     private int id_vehiculo;
-    private Integer id_tipo_cambio;
+    private int id_tipo_cambio;
 
     // Configuración del Crédito
     private double porcentaje_inicial; // Ej: 20.0 (para 20%)
