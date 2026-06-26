@@ -1,0 +1,18 @@
+Index: target/classes/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=FinanzasBackend\r\nspring.jpa.database=postgresql\r\nspring.jpa.show-sql=true\r\nspring.jpa.hibernate.ddl-auto=update\r\n\r\nspring.datasource.driver-class-name=org.postgresql.Driver\r\nspring.datasource.url=jdbc:postgresql://localhost/FinanzasBD\r\nspring.datasource.username=postgres\r\nspring.datasource.password=postgres\r\nserver.port=8080\r\njwt.secret=6a0f5dd45011c244f5f48e35d531bb73ca093ac3eee66e3cd07446de92204b94c993630161b1cdeec281e1d45ffd1a283b0fc46b6e5bc00457a3b316cfc6cc88caedeb0bdd93db50228191654aa4c1f1a2aca3b8bc989f269e626f87780114b0\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/classes/application.properties b/target/classes/application.properties
+--- a/target/classes/application.properties	(revision c63b6abd35a55c31720ffdd9459da55149587077)
++++ b/target/classes/application.properties	(date 1782364974252)
+@@ -6,6 +6,6 @@
+ spring.datasource.driver-class-name=org.postgresql.Driver
+ spring.datasource.url=jdbc:postgresql://localhost/FinanzasBD
+ spring.datasource.username=postgres
+-spring.datasource.password=postgres
++spring.datasource.password=postgre
+ server.port=8080
+ jwt.secret=6a0f5dd45011c244f5f48e35d531bb73ca093ac3eee66e3cd07446de92204b94c993630161b1cdeec281e1d45ffd1a283b0fc46b6e5bc00457a3b316cfc6cc88caedeb0bdd93db50228191654aa4c1f1a2aca3b8bc989f269e626f87780114b0
