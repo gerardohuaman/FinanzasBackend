@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="699d120a-05ed-4475-b6b8-b3e83e43affd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/SimulacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/SimulacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceimplements/SimulacionServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceimplements/SimulacionServiceImplement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/ISimulacionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/ISimulacionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/SimulacionInputDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/SimulacionInputDTO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +105,7 @@
       <workItem from="1782530933175" duration="1258000" />
       <workItem from="1782585641348" duration="681000" />
       <workItem from="1782611275827" duration="2264000" />
-      <workItem from="1782791586714" duration="517000" />
+      <workItem from="1782791586714" duration="4499000" />
     </task>
     <servers />
   </component>
