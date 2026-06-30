@@ -9,7 +9,7 @@ public class Moneda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_moneda;
 
-    @Column(name = "nombre", nullable = false, length = 15)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     @Column(name = "simbolo", nullable = false, length = 5)
