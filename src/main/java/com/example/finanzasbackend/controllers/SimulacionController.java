@@ -17,7 +17,7 @@ public class SimulacionController {
     @Autowired
     private ISimulacionService service;
 
-    @PostMapping("/calcular")
+    @PostMapping("/crear")
     public ResponseEntity<SimulacionResponseDTO> crearSimulacion(@RequestBody SimulacionInputDTO inputDTO){
         SimulacionResponseDTO response = service.calcularYRegistrarSimulacion(inputDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
