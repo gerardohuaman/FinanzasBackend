@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="699d120a-05ed-4475-b6b8-b3e83e43affd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/SimulacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/SimulacionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/dtos/ClienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/dtos/ClienteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/entities/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/entities/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/repositories/IClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/repositories/IClienteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceimplements/ClienteServiceImplement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceimplements/ClienteServiceImplement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/IClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/IClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/ClienteDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/ClienteDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/entities/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/entities/Cliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/repositories/IClienteRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/repositories/IClienteRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/serviceimplements/ClienteServiceImplement.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/serviceimplements/ClienteServiceImplement.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/serviceinterfaces/IClienteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/serviceinterfaces/IClienteService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

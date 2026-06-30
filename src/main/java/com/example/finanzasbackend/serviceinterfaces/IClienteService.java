@@ -9,5 +9,5 @@ public interface IClienteService {
     public List<Cliente> list();            //Read
     public void update(Cliente cliente);          //Update
     public Cliente listId(int id);
-    public Cliente findByNombres(String name);
+    public Cliente findByNombreCompleto(String name);
 }

@@ -12,11 +12,10 @@ public class Cliente {
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
-    @Column(name = "nombres", nullable = false, length = 100)
-    private String nombres;
-
-    @Column(name = "apellidos", nullable = false, length = 100)
-    private String apellidos;
+    @Column(name = "nombre_completo", nullable = false, length = 100)
+    private String nombreCompleto;
+    @Column(name = "telefono", nullable = false, length = 20)
+    private String telefono;
 
     @Column(name = "email", nullable = false, length = 50)
     private String email;
@@ -28,11 +27,10 @@ public class Cliente {
 
     public Cliente() {}
 
-    public Cliente(int id_cliente, String dni, String nombres, String apellidos, String email, double ingresos_mensuales) {
+    public Cliente(int id_cliente, String dni, String nombreCompleto, String telefono, String email, double ingresos_mensuales) {
         this.id_cliente = id_cliente;
         this.dni = dni;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
+        this.nombreCompleto = nombreCompleto;
         this.email = email;
         this.ingresos_mensuales = ingresos_mensuales;
 
@@ -54,20 +52,20 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getEmail() {

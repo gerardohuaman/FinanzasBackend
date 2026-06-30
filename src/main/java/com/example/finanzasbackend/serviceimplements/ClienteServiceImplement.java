@@ -33,7 +33,7 @@ public class ClienteServiceImplement  implements IClienteService {
     }
 
     @Override
-    public Cliente findByNombres(String name) {
-        return repository.findByNombres(name);
+    public Cliente findByNombreCompleto(String name) {
+        return repository.findByNombreCompleto(name);
     }
 }
