@@ -7,7 +7,7 @@ public class VehiculoDTO {
     private String marca;
     private String modelo;
     private double precio_venta;
-    private String moneda_origen;
+    private int id_moneda;
 
     public int getId_vehiculo() {
         return id_vehiculo;
@@ -41,11 +41,11 @@ public class VehiculoDTO {
         this.precio_venta = precio_venta;
     }
 
-    public String getMoneda_origen() {
-        return moneda_origen;
+    public int getId_moneda() {
+        return id_moneda;
     }
 
-    public void setMoneda_origen(String moneda_origen) {
-        this.moneda_origen = moneda_origen;
+    public void setId_moneda(int id_moneda) {
+        this.id_moneda = id_moneda;
     }
 }

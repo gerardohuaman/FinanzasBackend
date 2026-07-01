@@ -24,12 +24,16 @@ public class VehiculoController {
         Vehiculo vehiculo = m.map(dto, Vehiculo.class);
         service.insert(vehiculo);
     }
-
     @GetMapping
     public List<VehiculoDTO> list(){
         return service.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, VehiculoDTO.class);
+            VehiculoDTO dto = m.map(x, VehiculoDTO.class);
+            // ← ModelMapper no puede hacer esto solo, nombres distintos
+            if (x.getMoneda() != null) {
+                dto.setId_moneda(x.getMoneda().getId_moneda());
+            }
+            return dto;
         }).collect(Collectors.toList());
     }
 

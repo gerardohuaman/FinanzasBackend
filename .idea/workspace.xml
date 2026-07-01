@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="699d120a-05ed-4475-b6b8-b3e83e43affd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/IMonedaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/serviceinterfaces/IMonedaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/VehiculoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/controllers/VehiculoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/dtos/VehiculoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/finanzasbackend/dtos/VehiculoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/VehiculoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/finanzasbackend/dtos/VehiculoDTO.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,15 +30,15 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "mathiCV"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mathiCV&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/gerardohuaman/FinanzasBackend.git",
+    "url": "git@github.com:gerardohuaman/FinanzasBackend.git",
     "accountId": "7bd7c464-ea8e-4ea6-9c68-4dc83fbef9e0"
   }
 }]]></component>
@@ -65,7 +66,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;Spring Boot.FinanzasBackendApplication.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Mathias&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
